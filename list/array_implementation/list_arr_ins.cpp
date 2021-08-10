@@ -19,6 +19,8 @@ class list
 	bool IsEmpty()const;
 	bool IsFull()const;
 	bool InsertBeg(int x);
+	bool InsertEnd(int x);
+	bool InsertPos(int pos, int x);
 };
 list::list()
 {
@@ -39,7 +41,7 @@ list::~list()
 void list::PrintList()const
 {
 	int i;
-	for(i=0;i<capacity;i++)
+	for(i=0;i<no_of_elements;i++)
 	cout<<elements[i]<<endl;
 }
 bool list::IsEmpty()const
@@ -63,18 +65,36 @@ bool list::InsertBeg(int x)
 	no_of_elements++;
 	return true;
 }
+bool list::InsertEnd(int x)
+{
+	if(IsFull())
+	return false;
+	elements[no_of_elements++] = x;
+	return true;
+}
+bool list::InsertPos(int pos, int x)
+{
+	int i;
+	
+	if(IsFull()||(pos<1)||(pos>no_of_elements+1))
+	return false;
+	for(i=no_of_elements-1;i>=pos-1;i--)
+	elements[i+1] = elements[i];
+	elements[pos-1] = x;
+	no_of_elements++;
+	return true;
+}
 int main()
 {
 	int n;
 	cin>>n;
-	list l(n);	
-	
-	cout<<l.IsEmpty()<<endl;
-	cout<<l.IsFull()<<endl;
+	list l(n);		
 	l.InsertBeg(3);
-	l.InsertBeg(2);
+	l.InsertEnd(2);
 	l.InsertBeg(1);
-	l.PrintList();
+	if (!l.InsertPos(5,10))
+	cout<<"Insert Position failed\n";	
 	if(!l.InsertBeg(4))
 	cout<<"Insertion failed"<<endl;
+	l.PrintList();
 }
