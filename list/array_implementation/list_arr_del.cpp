@@ -23,6 +23,7 @@ class list
 	bool InsertEnd(int x);
 	bool InsertPos(int pos, int x);
 	int DeleteBeg();
+	int DeleteEnd();
 };
 list::list()
 {
@@ -58,6 +59,7 @@ bool list::IsFull()const
 }
 bool list::InsertBeg(int x)
 {
+	
 	int i;
 	if (IsFull())
 	return false;
@@ -88,13 +90,28 @@ bool list::InsertPos(int pos, int x)
 int list::DeleteBeg()
 {
 	int x=0,i;
+	deletion_success = true;
 	if(IsEmpty())
 	{
 		deletion_success = false;
+		return x;
 	}
 	x = elements[0];
 	for(i=1;i<no_of_elements;i++)
 	elements[i-1] = elements[i];
+	no_of_elements--;
+	return x;
+}
+int list::DeleteEnd()
+{
+	int x;
+	deletion_success = true;
+	if(IsEmpty())
+	{
+	deletion_success = false;
+	return x;
+	}
+	x = elements[no_of_elements-1];
 	no_of_elements--;
 	return x;
 }
@@ -118,4 +135,17 @@ int main()
 	else
 	cout<<"deletion failed\n";
 	l.PrintList();
+	x = l.DeleteEnd();
+	if(deletion_success==true)
+	cout<<x<<"is deleted"<<endl;
+	else
+	cout<<"Deletion failed"<<endl;
+	l.InsertBeg(4);
+	l.PrintList();
+	x = l.DeleteEnd();
+	cout<<x<<endl;
+	if(deletion_success==true)
+	cout<<x<<"is deleted"<<endl;
+	else
+	cout<<"Deletion failed"<<endl;
 }
