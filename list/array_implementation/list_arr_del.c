@@ -76,6 +76,7 @@ int InsertPos(list* l, int pos, int x)
 int DeleteBeg(list* l)
 {
 	int i,x=0;
+	deletion_success = 1;
 	if (IsEmpty(*l))
 	{
 	deletion_success = 0;
@@ -84,6 +85,20 @@ int DeleteBeg(list* l)
 	x = l->elements[0];
 	for(i=1;i<l->no_of_elements;i++)
 	l->elements[i-1] = l->elements[i];
+	l->no_of_elements--;
+	return x;
+}
+
+int DeleteEnd(list* l)
+{
+	int x=0;
+	deletion_success = 1;
+	if(IsEmpty(*l))
+	{
+		deletion_success = 0;
+		return x;
+	}
+	x = l->elements[l->no_of_elements-1];
 	l->no_of_elements--;
 	return x;
 }
@@ -104,8 +119,22 @@ int main()
 	printf("After deletion\n");
 	x = DeleteBeg(&l);
 	if(deletion_success)
-	printf("%d is deleted",x);
+	printf("%d is deleted\n",x);
 	else
-	printf("Deletion failed");
+	printf("Deletion failed\n");
 	PrintList(l);
+	x = DeleteEnd(&l);
+	if(deletion_success==1)
+	printf("%d is deleted end",x);
+	else
+	printf("Delete end failed\n");
+	PrintList(l);
+	InsertBeg(&l,4);
+	x = DeleteEnd(&l);
+	printf("Actually %d",x);
+	if(deletion_success==1)
+	printf("%d element is deleted end\n",x);
+	else
+	printf("Delete end failed\n");
+	
 }
