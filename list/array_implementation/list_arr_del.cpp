@@ -24,6 +24,7 @@ class list
 	bool InsertPos(int pos, int x);
 	int DeleteBeg();
 	int DeleteEnd();
+	int DeletePos(int);
 };
 list::list()
 {
@@ -44,6 +45,7 @@ list::~list()
 void list::PrintList()const
 {
 	int i;
+	cout<<"Elements in the list are"<<endl;
 	for(i=0;i<no_of_elements;i++)
 	cout<<elements[i]<<endl;
 }
@@ -115,6 +117,21 @@ int list::DeleteEnd()
 	no_of_elements--;
 	return x;
 }
+int list::DeletePos(int pos)
+{
+	int x=0,i;
+	deletion_success = true;
+	if(IsEmpty()||(pos<1)||(pos>no_of_elements))
+	{
+		deletion_success = false;
+		return x;
+	}
+	x = elements[pos-1];
+	for(i=pos;i<no_of_elements;i++)
+	elements[i-1] = elements[i];
+	no_of_elements--;
+	return x;
+}
 int main()
 {
 	int n,x;
@@ -123,7 +140,14 @@ int main()
 	l.InsertBeg(3);
 	l.InsertEnd(2);
 	l.InsertBeg(1);
-	if (!l.InsertPos(5,10))
+	l.PrintList();
+	x = l.DeletePos(4);
+	if(deletion_success)
+	cout<<x<<" is deleted"<<endl;
+	else
+	cout<<"Deletion failed"<<endl;
+	l.PrintList();
+	/*if (!l.InsertPos(5,10))
 	cout<<"Insert Position failed\n";	
 	if(!l.InsertBeg(4))
 	cout<<"Insertion failed"<<endl;
@@ -147,5 +171,5 @@ int main()
 	if(deletion_success==true)
 	cout<<x<<"is deleted"<<endl;
 	else
-	cout<<"Deletion failed"<<endl;
+	cout<<"Deletion failed"<<endl;*/
 }
