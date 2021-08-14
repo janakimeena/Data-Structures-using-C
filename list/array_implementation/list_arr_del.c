@@ -23,6 +23,7 @@ list CreateList(int c)
 void PrintList(list l)
 {
 	int i;
+	printf("Elements in the list are\n");
 	for(i=0;i<l.no_of_elements;i++)
 	printf("%d\n",l.elements[i]);
 }
@@ -102,6 +103,22 @@ int DeleteEnd(list* l)
 	l->no_of_elements--;
 	return x;
 }
+int DeletePos(list* l,int pos)
+{
+	int x=0,i;
+	deletion_success = 1;
+	if(IsEmpty(*l)||(pos<1)||(pos>l->no_of_elements))
+	{
+		deletion_success = 0;
+		return x;
+	}
+	x = l->elements[pos-1];
+	for(i=pos;i<l->no_of_elements;i++)
+	l->elements[i-1] = l->elements[i];
+	l->no_of_elements--;
+	return x;
+
+}
 int main()
 {
 	list l;
@@ -111,7 +128,14 @@ int main()
 	InsertBeg(&l,3);
 	InsertEnd(&l,2);
 	InsertBeg(&l,1);
-	if (!InsertPos(&l,4,10))
+	PrintList(l);
+	x = DeletePos(&l,4);
+	if(deletion_success)
+	printf("%d is deleted\n",x);
+	else
+	printf("Deletion failed");
+	PrintList(l);
+	/*if (!InsertPos(&l,4,10))
 	printf("Insert pos failed\n");
 	if (!InsertEnd(&l,4))
 	printf("Insertion failed\n");
@@ -135,6 +159,6 @@ int main()
 	if(deletion_success==1)
 	printf("%d element is deleted end\n",x);
 	else
-	printf("Delete end failed\n");
+	printf("Delete end failed\n");*/
 	
 }
