@@ -17,6 +17,7 @@ class llist
     llist();
     bool IsEmpty();
     bool InsertBeg(int);
+    bool InsertEnd(int);
     void PrintList();
 };
 node* CreateNode(int data)
@@ -49,6 +50,20 @@ bool llist::InsertBeg(int data)
     head = new_node;
     return true;
 }
+bool llist::InsertEnd(int data)
+{
+    node *temp, *new_node;
+    if(IsEmpty())
+    return InsertBeg(data);
+    new_node = CreateNode(data);
+    if(new_node==NULL)
+    return false;
+    temp = head;
+    while(temp->next!=NULL)
+    temp = temp->next;
+    temp->next = new_node;
+    return true;
+}
 void llist::PrintList()
 {
     node* temp;
@@ -64,8 +79,9 @@ int main()
 {
     llist l;
     cout<<"Isempty returned "<<l.IsEmpty()<<endl;
-    l.InsertBeg(1);
-    l.InsertBeg(2);
+    //l.InsertBeg(1);
+    //l.InsertBeg(2);
+    l.InsertEnd(5);
     l.PrintList();
 
 }
