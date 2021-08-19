@@ -61,11 +61,34 @@ int InsertEnd(llist* l,int data)
     temp->next = new_node;
     return 1;
 }
+int Insert_Position(llist* l, int pos, int data)
+{
+    node *temp,*new_node;
+    int counter = 1,chk;
+    if (pos==1)
+    return InsertBeg(l,data);
+    temp = l->head;
+    while(counter<pos-1)
+    {
+        temp = temp->next;
+        if(temp==NULL)
+        return 0;
+        
+        counter++;
+    }
+    printf("I am outside\n");
+    new_node = CreateNode(data);
+    if(new_node==NULL)
+    return 0;
+    new_node->next = temp->next;
+    temp->next = new_node;
+    return 1;
+}
 void PrintList(llist l)
 {
     node* temp;
     temp =l.head;
-    printf("List is getting printed\t");
+    printf("List is getting printed\n");
     while(temp)
     {
         printf("%d\n",temp->data);
@@ -78,8 +101,9 @@ int main()
     printf("%d returned by isempty\n",IsEmpty(l));
     CreateList(&l);
     printf("%d returned after create\n",IsEmpty(l));
-    //InsertBeg(&l,1);
-    //InsertBeg(&l,2);
+    InsertBeg(&l,1);
+    InsertBeg(&l,2);
     InsertEnd(&l,5);
+    Insert_Position(&l,5,10);
     PrintList(l);
 }
