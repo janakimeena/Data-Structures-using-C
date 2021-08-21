@@ -5,6 +5,7 @@
 */
 #include<stdio.h>
 #include<stdlib.h>
+int delete_error_flag = 0;
 typedef struct node
 {
     int data;
@@ -67,8 +68,6 @@ int Insert_Position(llist* l, int pos, int data)
     int counter = 1,chk;
     if (pos==1)
     return InsertBeg(l,data);
-    if(IsEmpty(*l)&&pos>1)
-    return 0;
     temp = l->head;
     printf("Before loop %p\n",temp);
     while(counter<pos-1)
@@ -98,15 +97,38 @@ void PrintList(llist l)
         temp = temp->next;
     }
 }
+int DeleteBeg(llist* l)
+{
+    node* temp;
+    int tempint;
+    delete_error_flag = 0;
+    if(IsEmpty(*l))
+    {
+        delete_error_flag = 1;
+        return -1;
+    }
+    temp = l->head;
+    tempint = l->head->data;
+    l->head = l->head->next;
+    free(temp);
+    return tempint;
+}
 int main()
 {
     llist l;
+    int t;
     printf("%d returned by isempty\n",IsEmpty(l));
     CreateList(&l);
     printf("%d returned after create\n",IsEmpty(l));
-    //InsertBeg(&l,1);
-//    InsertBeg(&l,2);
-//    InsertEnd(&l,5);
+    InsertBeg(&l,1);
+    InsertBeg(&l,2);
+    InsertEnd(&l,5);
     Insert_Position(&l,2,10);
+    PrintList(l);
+    t = DeleteBeg(&l);
+    if(delete_error_flag)
+    printf("Delettion failed\n");
+    else
+    printf("Value deleted is %d\n",t);
     PrintList(l);
 }
