@@ -113,6 +113,32 @@ int DeleteBeg(llist* l)
     free(temp);
     return tempint;
 }
+int DeleteEnd(llist *l)
+{
+    node *temp;
+    int tempint;
+    delete_error_flag = 0;
+    if(IsEmpty(*l))
+    {
+        delete_error_flag = 1;
+        return -1;
+    }
+    if(l->head->next==NULL)
+    {
+        tempint = l->head->data;
+        l->head = NULL;
+        return tempint;
+    }
+    temp = l->head;
+    while(temp->next->next!=NULL)
+    {
+        temp = temp->next;
+    }
+    tempint = temp->next->data;
+    free(temp->next);
+    temp->next = NULL;
+    return tempint;
+}
 int main()
 {
     llist l;
@@ -126,6 +152,12 @@ int main()
     Insert_Position(&l,2,10);
     PrintList(l);
     t = DeleteBeg(&l);
+    if(delete_error_flag)
+    printf("Delettion failed\n");
+    else
+    printf("Value deleted is %d\n",t);
+    PrintList(l);
+    t = DeleteEnd(&l);
     if(delete_error_flag)
     printf("Delettion failed\n");
     else
