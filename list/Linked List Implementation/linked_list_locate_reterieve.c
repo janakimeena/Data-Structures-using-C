@@ -6,6 +6,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 int delete_error_flag = 0;
+int retrieve_error_flag = 0;
 typedef struct node
 {
     int data;
@@ -190,6 +191,37 @@ int locate(llist l,int ele)
     }
     return -1;
 }
+int retrieve(llist l,int pos)
+{
+    node* temp;
+    int counter;
+    retrieve_error_flag = 0;
+    if(IsEmpty(l))
+    {
+        retrieve_error_flag = 1;
+        return -1;
+    }
+    temp = l.head;
+    counter = 1;
+    while(pos!=counter)
+    {
+        temp = temp->next;
+        counter++;
+        if(temp==NULL)
+        {
+            retrieve_error_flag = 1;
+            return -1;
+        }
+    }
+    //if(temp)
+    return temp->data;
+    /*else
+    {
+        retrieve_error_flag = 1;
+        return -1;
+    }*/
+
+}
 int main()
 {
     llist l;
@@ -202,7 +234,12 @@ int main()
     InsertEnd(&l,5);
     Insert_Position(&l,2,10);
     PrintList(l);
-    t = locate(l,20);
+    t = retrieve(l,5);
+    if(retrieve_error_flag)
+    printf("Invalid position");
+    else
+    printf("Element at position is %d\n", t);
+    /*t = locate(l,20);
     if(t==-1)
     printf("Element not found\n");
     else
