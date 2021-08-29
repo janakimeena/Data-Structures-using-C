@@ -8,6 +8,7 @@
 int delete_error_flag = 0;
 int retrieve_error_flag = 0;
 int previous_error_flag = 0;
+int next_error_flag = 0;
 typedef struct node
 {
     int data;
@@ -243,6 +244,25 @@ int previous(llist l,int ele)
     return -1;
 
 }
+int next(llist l, int ele)
+{
+    node* temp;
+    next_error_flag = 0;
+    if(IsEmpty(l))
+    {
+        next_error_flag = 1;
+        return -1;
+    }
+    temp = l.head;
+    while(temp->next)
+    {
+        if(temp->data==ele)
+        return temp->next->data;
+        temp = temp->next;   
+    }
+    next_error_flag = 1;
+    return -1;
+}
 int main()
 {
     llist l;
@@ -255,11 +275,11 @@ int main()
     InsertEnd(&l,5);
     Insert_Position(&l,2,10);
     PrintList(l);
-    t = previous(l,20);
-    if(previous_error_flag)
+    t = next(l,50);
+    if(next_error_flag)
     printf("Invalid");
     else
-    printf("Previous element is %d\n", t);
+    printf("Next element is %d\n", t);
     /*t = locate(l,20);
     if(t==-1)
     printf("Element not found\n");
