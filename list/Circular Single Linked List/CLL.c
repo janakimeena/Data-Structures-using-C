@@ -49,6 +49,28 @@ int InsertBeg(cllist* l,int data)
     l->head = new_node;
     return 1;
 }
+int InsertEnd(cllist* l, int d)
+{
+    node *temp, *new_node;
+    if(IsEmpty(*l))
+    {
+        return InsertBeg(l,d);
+    }
+    new_node = CreateNode(d);
+    if(!new_node)
+    {
+        return 0;
+    }
+    temp = l->head;
+    while(temp->next!=l->head)
+    {
+        temp = temp->next;
+    }
+    temp->next = new_node;
+    new_node->next = l->head;
+    
+    return 1;
+}
 void PrintList(cllist l)
 {
     printf("List is printed...\n");

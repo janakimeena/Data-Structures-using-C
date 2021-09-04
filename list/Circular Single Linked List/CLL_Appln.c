@@ -15,8 +15,9 @@ int main()
     printf("%d returned after create\n",IsEmpty(l));    
     InsertBeg(&l,1);
     InsertBeg(&l,2);
+    InsertEnd(&l,5);
     InsertBeg(&l,3);
-    InsertBeg(&l,4);
+    InsertEnd(&l,4);
     PrintList(l);
 
 
