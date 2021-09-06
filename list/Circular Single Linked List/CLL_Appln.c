@@ -18,6 +18,7 @@ int main()
     InsertEnd(&l,5);
     InsertBeg(&l,3);
     InsertEnd(&l,4);
+    Insert_Position(&l,3,10);
     PrintList(l);
 
 

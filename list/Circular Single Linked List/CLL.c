@@ -71,6 +71,34 @@ int InsertEnd(cllist* l, int d)
     
     return 1;
 }
+int Insert_Position(cllist* l, int pos, int data)
+{
+    
+    node *new_node,*temp;
+    int counter;
+    if(IsEmpty(*l))
+        return InsertBeg(l,data);
+    new_node = CreateNode(data);
+    if (new_node==NULL)
+        return 0;
+    temp = l->head;
+    counter = 1;
+    while(temp->next!=l->head)
+    {
+        if(counter==pos-1)
+            break;
+        counter++;
+        temp = temp->next;        
+    }
+    if(counter==pos-1)
+    {
+        
+        new_node->next = temp->next;
+        temp->next = new_node;
+        return 1;
+    }
+    return 0;
+}
 void PrintList(cllist l)
 {
     printf("List is printed...\n");
