@@ -14,11 +14,16 @@ int main()
     CreateList(&l);
     printf("%d returned after create\n",IsEmpty(l));    
     InsertBeg(&l,1);
-    InsertBeg(&l,2);
-    InsertEnd(&l,5);
-    InsertBeg(&l,3);
-    InsertEnd(&l,4);
-    Insert_Position(&l,3,10);
+    //InsertBeg(&l,2);
+    //InsertEnd(&l,5);
+    //InsertBeg(&l,3);
+    //InsertEnd(&l,4);
+    //Insert_Position(&l,3,10);
+    t = DeleteBeg(&l);
+    if(delete_error_flag)
+        printf("Deletion failed\n");
+    else
+        printf("Value deleted is %d",t);
     PrintList(l);
 
 

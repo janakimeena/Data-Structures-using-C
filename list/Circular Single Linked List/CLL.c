@@ -99,10 +99,38 @@ int Insert_Position(cllist* l, int pos, int data)
     }
     return 0;
 }
+int DeleteBeg(cllist *l)
+{
+    node *temp,*temp1;
+    int data;
+    delete_error_flag = 0;
+    if(IsEmpty(*l))
+    {
+        delete_error_flag = 1;
+        return -1;
+    }
+    data = l->head->data;
+    if(l->head->next==l->head)
+    {
+        free (l->head);
+        l->head = NULL;
+        return data;
+    }
+    temp = l->head;
+    while(temp->next!=l->head)
+        temp = temp->next;
+    temp->next = l->head->next;
+    temp1 = l->head;
+    l->head = l->head->next;
+    free(temp1);
+    return data;
+}
 void PrintList(cllist l)
 {
     printf("List is printed...\n");
     node* temp = l.head;
+    if(IsEmpty(l))
+        return;
     while(temp->next!=l.head)
     {
         printf("%d\n",temp->data);
