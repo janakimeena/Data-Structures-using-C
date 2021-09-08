@@ -19,13 +19,12 @@ int main()
     //InsertBeg(&l,3);
     //InsertEnd(&l,4);
     //Insert_Position(&l,3,10);
-    t = DeleteBeg(&l);
+    t = DeleteEnd(&l);
     if(delete_error_flag)
         printf("Deletion failed\n");
     else
         printf("Value deleted is %d",t);
     PrintList(l);
-
 
     /*InsertBeg(&l,2);
     InsertEnd(&l,5);

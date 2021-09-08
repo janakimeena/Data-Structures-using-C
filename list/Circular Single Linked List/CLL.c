@@ -125,6 +125,36 @@ int DeleteBeg(cllist *l)
     free(temp1);
     return data;
 }
+int IsSingleNode(cllist *l)
+{
+    return(l->head->next==l->head);
+}
+int DeleteEnd(cllist* l)
+{
+    node *temp,*temp1;
+    int d;
+    // Step 1: If list is empty or there is only one in the list 
+    // return after calling Insert Beginning
+    if(IsEmpty(*l)||IsSingleNode(l))
+    {
+        return DeleteBeg(l);
+    }
+    // Step 2: Make temp to point to head
+    temp = l->head;
+    // Step 3: Move temp to last but one node
+    while(temp->next->next!=l->head)
+        temp = temp->next;
+    // Step 4: Let temp1 hold address of last node
+    temp1 = temp->next;
+    // Step 5: Make next part of temp as head
+    temp->next = l->head;
+    // Step 7: Let d= data part of temp1
+    d = temp1->data;
+    // Step 8: Free piece of memory with address temp1
+    free(temp1);
+    // Step 9: return d
+    return d;
+}
 void PrintList(cllist l)
 {
     printf("List is printed...\n");
