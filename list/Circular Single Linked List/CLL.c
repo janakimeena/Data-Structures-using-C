@@ -155,6 +155,57 @@ int DeleteEnd(cllist* l)
     // Step 9: return d
     return d;
 }
+int DeletePos(cllist* l,int pos)
+{
+    node* temp, *temp1;
+    int d,counter;
+    delete_error_flag = 0;
+    if(pos<1)
+    {
+        delete_error_flag=1;
+        return -1;
+    }   
+    // Step 1: If list is empty or pos =1 then 
+    // Call DeleteBeg and return
+    if(IsEmpty(*l))
+    {
+        delete_error_flag=1;
+        return -1;
+    }
+    // Step 2: Let temp = head, counter =1
+    temp = l->head;
+    counter = 1;
+    // Step 3: While counter < pos-1 and temp is not in last node 
+    // repeat Step 4
+    while((temp->next!=l->head)&&(counter<pos-1))
+    // Step 4: Increment counter and move temp to next node
+    {
+        counter++;
+        temp = temp->next;
+    }
+    // Step 5: If counter = pos-1 do step 8 to 11
+    
+    // Step 6: Let temp1 = temp->next
+    temp1 = temp->next;
+    // Step 7: If temp1 is head, communicate failure and return -1
+    if(temp1==l->head)
+    {
+        delete_error_flag=1;
+        return -1;
+    }
+    if(counter==pos-1)
+    {
+    // Step 8: Make next part of temp = next part of temp1
+    temp->next = temp1->next;
+    // Step 9: Let d = data part of temp1
+    d = temp1->data;
+    
+    // Step 10: Free memory pointed by temp1
+    free(temp1);
+    // Step 11: Return d
+    return d;
+    }
+}
 void PrintList(cllist l)
 {
     printf("List is printed...\n");

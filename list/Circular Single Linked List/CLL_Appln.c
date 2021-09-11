@@ -13,13 +13,13 @@ int main()
     printf("%d returned by isempty\n",IsEmpty(l));
     CreateList(&l);
     printf("%d returned after create\n",IsEmpty(l));    
-    InsertBeg(&l,1);
-    //InsertBeg(&l,2);
-    //InsertEnd(&l,5);
-    //InsertBeg(&l,3);
-    //InsertEnd(&l,4);
+    InsertEnd(&l,1);
+    InsertEnd(&l,2);
+    InsertEnd(&l,3);
+    InsertEnd(&l,4);
+    InsertEnd(&l,5);
     //Insert_Position(&l,3,10);
-    t = DeleteEnd(&l);
+    t = DeletePos(&l,0);
     if(delete_error_flag)
         printf("Deletion failed\n");
     else
