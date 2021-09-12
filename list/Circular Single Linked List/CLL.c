@@ -206,6 +206,75 @@ int DeletePos(cllist* l,int pos)
     return d;
     }
 }
+int locate(cllist l,int ele)
+{
+    node* temp;
+    int counter;
+    // Step 1: If list is empty then communicate failure 
+    // and return -1
+    if(IsEmpty(l))
+        return -1;
+    // Step 2: Declare a temporary pointer, temp and integer counter
+    // Step 3: Initialize temp to point to first node and 
+    // counter to 1
+    temp = l.head;
+    counter = 1;
+    // Step 4: While next part of temp not equal to head repeat 
+    // Step 5 and Step 6
+    while(temp->next!=l.head)
+    {
+    // Step 5: If data part of node pointed by temp is equal to 
+    // Element return counter 
+        if(temp->data == ele)
+            return counter;
+    // Step 6: Move temp to next node and increment counter
+        temp = temp->next;
+        counter++;
+    }
+    // Step 7: If data part of temp is equal to Element 
+    if (temp->data==ele)
+        return counter;
+    // return counter
+    // Step 8: return -1
+    return -1;
+
+}
+int retrieve(cllist l,int pos)
+{
+// Step 1: If list is empty then communicate failure and return -1
+// Step 2: Declare a temporary pointer, temp and integer counter
+// Step 3: Initialize temp to point to first node and counter to 1
+// Step 4: While counter<position repeat Step 5 and Step 6
+// Step 5: If next part of temp is head then break
+// Step 6: Move temp to next node and increment counter
+//Step 7: If pos == counter then return data part of temp and communicate failure otherwise
+
+}
+int previous(cllist l,int ele)
+{
+// Step 1: If list is empty then Indicate failure to callee function and return -1
+// Step 2: Declare a temporary pointer, temp
+// Step 3: Initialize temp to point to first node
+// Step 4: When next part of temp is not head repeat Step 5 and Step 6
+// Step 5: If data in next node of temp is equal to Element then return data part of temp
+// Step 6: Move temp to next node
+// Step 7: Indicate failure to callee function and return -1
+
+}
+int next(cllist l, int ele)
+{
+// Step 1: If list is empty then Indicate failure to callee function and return -1
+// Step 2: Declare a temporary pointer, temp
+// Step 3: Initialize temp to point to first node
+// Step 4: While next part of temp != head (i.e.) when temp is not in the last node then repeat Step 5 and Step 6
+// Step 5: If data of temp is equal to Element then return data part of next node of temp
+// Step 6: Move temp to next node
+// Step 7: Indicate failure to callee function and return -1
+
+}
+void DestroyList(cllist *l)
+{
+}
 void PrintList(cllist l)
 {
     printf("List is printed...\n");

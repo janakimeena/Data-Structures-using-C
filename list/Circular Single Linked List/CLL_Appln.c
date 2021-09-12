@@ -19,11 +19,11 @@ int main()
     InsertEnd(&l,4);
     InsertEnd(&l,5);
     //Insert_Position(&l,3,10);
-    t = DeletePos(&l,0);
-    if(delete_error_flag)
-        printf("Deletion failed\n");
+    t = locate(l,5);
+    if(t==-1)
+        printf("Element not found\n");
     else
-        printf("Value deleted is %d",t);
+        printf("Element is at position %d",t);
     PrintList(l);
 
     /*InsertBeg(&l,2);
