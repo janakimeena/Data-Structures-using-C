@@ -19,11 +19,11 @@ int main()
     InsertEnd(&l,4);
     InsertEnd(&l,5);
     //Insert_Position(&l,3,10);
-    t = locate(l,5);
-    if(t==-1)
-        printf("Element not found\n");
+    t = previous(l,40);
+    if(previous_error_flag)
+        printf("Position not valid\n");
     else
-        printf("Element is at position %d",t);
+        printf("Element at position is %d",t);
     PrintList(l);
 
     /*InsertBeg(&l,2);
