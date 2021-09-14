@@ -19,13 +19,14 @@ int main()
     InsertEnd(&l,4);
     InsertEnd(&l,5);
     //Insert_Position(&l,3,10);
-    t = previous(l,40);
-    if(previous_error_flag)
+    t = next(l,6);
+    if(next_error_flag)
         printf("Position not valid\n");
     else
-        printf("Element at position is %d",t);
+        printf("Next element at position is %d",t);
     PrintList(l);
-
+    DestroyList(&l);
+    printf("%d",IsEmpty(l));
     /*InsertBeg(&l,2);
     InsertEnd(&l,5);
     Insert_Position(&l,2,10);

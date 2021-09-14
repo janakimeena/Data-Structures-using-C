@@ -308,21 +308,61 @@ int previous(cllist l,int ele)
 }
 int next(cllist l, int ele)
 {
+    node* temp;
+    next_error_flag = 0;
     // Step 1: If list is empty then Indicate failure 
     // to callee function and return -1
+    if(IsEmpty(l))
+    {
+        next_error_flag=1;
+        return -1;
+    }
     // Step 2: Declare a temporary pointer, temp
     // Step 3: Initialize temp to point to first node
+    temp = l.head;
     // Step 4: While next part of temp != head (i.e.) 
     // when temp is not in the last node then repeat 
     // Step 5 and Step 6
+    while(temp->next!=l.head)
+    {
     // Step 5: If data of temp is equal to Element 
+    if(temp->data==ele)
+        return temp->next->data;
     // then return data part of next node of temp
     // Step 6: Move temp to next node
+    temp=temp->next;
+    }
     // Step 7: Indicate failure to callee function and return -1
-
+    next_error_flag=1;
+    return -1;
 }
 void DestroyList(cllist *l)
 {
+    node* temp;
+    // Step 1: Initialize temp to head
+    temp = l->head;
+    // Step 2: Move temp to last node and make 
+    // next part of last node as NULL
+    while(temp->next!=l->head)
+    {
+        temp = temp->next;
+    }
+    temp->next=NULL;
+    
+    while(l->head->next!=NULL)
+    {
+    // Step 3: While head->next != NULL repeat steps 4 and 5
+    // Step 4: temp = head
+    temp = l->head;
+    // Step 5: Move head to next node, delete temp
+    l->head = l->head->next;
+    delete temp;
+    }
+    temp = l->head;
+    // Step 6: Delete temp
+    delete temp;
+    // Step 7: Make head as NULL
+    l->head = NULL;
 }
 void PrintList(cllist l)
 {
