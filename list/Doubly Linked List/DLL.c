@@ -23,6 +23,49 @@ int IsEmpty(dllist l)
         return 1;
     return 0;
 }
+int InsertBeg(dllist* l,int data)
+{
+    node* new_node;
+    // Step 1: Call createnode function and get address returned in new_node
+    new_node = CreateNode(data);
+    // Step 2: If new_node is Null is returned return false
+    if (new_node==NULL)
+        return 0;
+    // Step 3: If list is empty then make both head and tail to point to new_node
+    if(IsEmpty(*l))
+    {
+        l->head = new_node;
+        l->tail = new_node;
+        return 1;
+    }
+
+    // Step 4: Make next part of new_node to store head
+    new_node->next = l->head;
+    // Step 5: Make prev part of head to point to new_node
+    l->head->prev = new_node;
+    l->head = new_node;
+    // Step 6: return true
+    return true;
+
+}
+void PrintList(dllist l)
+{
+    node* temp;
+    // Step 1: If list is empty return
+    if(IsEmpty(l))
+        return;
+    // Step 2: Declare a temporary pointer, temp and make it to point to head
+    temp = l.head;
+    // Step 3: While temp is not NULL repeat step 4 and 5
+    while(temp)
+    {
+    // Step 4: Print data part of temp
+        printf("%d\n",temp->data);
+    // Step 5: Move temp to next node
+        temp = temp->next;
+    }
+
+}
 
 
 
