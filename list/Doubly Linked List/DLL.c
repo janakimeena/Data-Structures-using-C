@@ -48,6 +48,26 @@ int InsertBeg(dllist* l,int data)
     return true;
 
 }
+int InsertEnd(dllist* l,int data)
+{
+    node* new_node;
+    // Step 1: Call createnode function and get address returned in new_node
+    new_node = CreateNode(data);
+    // Step 2: If new_node is Null is returned return false
+    if (new_node==NULL)
+        return 0;
+    // Step 3: If list is empty then Call Insert beginning and return
+    if (IsEmpty(*l))
+        return InsertBeg(l,data);
+    // Step 4: Make next part of tail to have address of new_node
+    l->tail->next = new_node;
+    // Step 5: Make prev part of new_node to contain tail
+    new_node->prev = l->tail;
+    // Step 6: Make new_node as tail
+    l->tail = new_node;
+    return 1;
+
+}
 void PrintList(dllist l)
 {
     node* temp;

@@ -23,6 +23,7 @@ void CreateList(dllist *l);
 int IsEmpty(dllist l);
 int InsertBeg(dllist* l,int data);
 void PrintList(dllist l);
+int InsertEnd(dllist* l,int data);
 #endif
 
 
@@ -52,10 +53,8 @@ void PrintList(dllist l);
 
 
 
-
-
 /*
-int InsertEnd(cllist* l,int data);
+
 int Insert_Position(cllist* l, int pos, int data);
 
 int DeleteBeg(cllist* l);

@@ -13,9 +13,9 @@ int main()
     printf("%d returned by isempty\n",IsEmpty(l));
     CreateList(&l);
     printf("%d returned by isempty\n",IsEmpty(l));
-    InsertBeg(&l,1);
-    InsertBeg(&l,2);
-    InsertBeg(&l,3);
+    InsertEnd(&l,1);
+    InsertEnd(&l,2);
+    InsertEnd(&l,3);
     PrintList(l);
 }
     
