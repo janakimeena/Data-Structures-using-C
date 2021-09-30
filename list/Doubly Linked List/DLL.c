@@ -48,6 +48,54 @@ int InsertBeg(dllist* l,int data)
     return true;
 
 }
+int InsertPos(dllist* l,int pos,int data)
+{
+    node *new_node,*temp;
+    int counter=0;
+    // Step 1: If pos =1 then Call InsertBeg and return
+    if (pos==1)
+        return InsertBeg(l,data);
+    // Step 2: Call createnode function and get address returned in new_node
+    new_node = CreateNode(data);
+    // Step 3: If new_node is Null then return false
+    if(new_node==NULL)
+        return false;
+    // Step 4: Let temp = head, counter =1
+    temp = l->head; counter = 1;
+    // Step 5: While temp is not tail repeat Step 6 and 7
+    while(temp!=l->tail)
+    {
+    // Step 6: If counter = pos -1 then break
+        if(counter==pos-1)
+            break;
+    // Step 7: Increment counter and move temp to next node
+        counter++;
+        temp=temp->next;
+    }
+    if(counter==pos-1)
+    {
+    // Step 8: If counter = pos-1 do step 9 to 14
+    // Step 9: If temp==tail then return InsertEnd
+    if (temp==l->tail)
+        return InsertEnd(l,data);
+    // Step 10: Next part of new_node = next part of temp
+    new_node->next = temp->next;
+    // Step 11: Prev part of new_node is temp
+    new_node->prev = temp;
+    // Step 12: Previous part of next node of temp is new_node
+    temp->next->prev = new_node;
+    // Step 13: Next part of temp = new_node
+    temp->next = new_node;
+    
+    // Step 14: Return true
+    return true;
+    }
+    // Step 15: Return false
+    return false;
+
+
+
+}
 int InsertEnd(dllist* l,int data)
 {
     node* new_node;

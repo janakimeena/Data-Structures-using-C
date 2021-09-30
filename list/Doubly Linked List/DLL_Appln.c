@@ -15,7 +15,8 @@ int main()
     printf("%d returned by isempty\n",IsEmpty(l));
     InsertEnd(&l,1);
     InsertEnd(&l,2);
-    InsertEnd(&l,3);
+    InsertPos(&l,4,3);
+    InsertEnd(&l,4);
     PrintList(l);
 }
     

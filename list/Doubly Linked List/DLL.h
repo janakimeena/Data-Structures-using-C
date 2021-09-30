@@ -24,6 +24,7 @@ int IsEmpty(dllist l);
 int InsertBeg(dllist* l,int data);
 void PrintList(dllist l);
 int InsertEnd(dllist* l,int data);
+int InsertPos(dllist* l,int pos,int data);
 #endif
 
 
