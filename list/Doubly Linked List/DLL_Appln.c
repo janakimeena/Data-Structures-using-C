@@ -15,8 +15,15 @@ int main()
     printf("%d returned by isempty\n",IsEmpty(l));
     InsertEnd(&l,1);
     InsertEnd(&l,2);
-    InsertPos(&l,4,3);
-    InsertEnd(&l,4);
+    InsertEnd(&l,3);
+    printf("List before deletion is \n");
+    PrintList(l);
+    t = DeleteBeg(&l);
+    if(DELETE_ERROR_FLAG)
+        printf("Deletion failed");
+    else
+        printf("Element deleted is %d",t);
+    printf("List after deletion is \n");
     PrintList(l);
 }
     

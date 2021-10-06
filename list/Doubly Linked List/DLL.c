@@ -1,6 +1,6 @@
 #include "DLL.h"
 #include<stdio.h>
-
+int DELETE_ERROR_FLAG = 0;
 node* CreateNode(int data)
 {
    node* new_node;
@@ -114,7 +114,63 @@ int InsertEnd(dllist* l,int data)
     // Step 6: Make new_node as tail
     l->tail = new_node;
     return 1;
-
+}
+int IsSingleNode(dllist l)
+{
+    // return true if head==tail and false otherwise
+    return (l.head==l.tail);
+}
+int DeleteBeg(dllist* l)
+{
+    node *temp;
+    int d;
+    DELETE_ERROR_FLAG = 0;
+    // Step 1: If list is empty indicate failure and return -1
+    if(IsEmpty(*l))
+    {
+        DELETE_ERROR_FLAG = 1;
+        return -1;
+    }
+    // Step 2: Let data = data part of head
+    d = l->head->data;
+    if(IsSingleNode(*l))
+    {
+    // Step 3: If there is only one in the list (i.e.) if head == tail then 
+    //	  (i) Free memory pointed by head
+        free(l->head);
+	//    (ii) Make head and tail as NULL
+        l->head=l->tail=NULL;
+	//    (iii) return data
+        return d;
+    }
+    // Step 4: Make temp to point to head 
+    temp = l->head;
+    // Step 5: Move head to next node
+    l->head = l->head->next;
+    // Step 6: Free piece of memory pointed by temp
+    free(temp);
+    // Step 7: Return data
+    return d;
+}
+int DeleteEnd(dllist *l)
+{
+    // Step 1: If list is empty or there is only one in the list return after calling Delete Beginning
+    // Step 2: Make temp to point to tail
+    // Step 3: Move tail to previous node
+    // Step 4: Free memory pointed by tail
+    // Step 5: Return data
+}
+int DeletePos(dllist *l,int pos)
+{
+    // Step 1: If list is empty or pos =1 then Call DeleteBeg and return
+    // Step 2: Let temp = head, counter =1
+    // Step 3: While counter < pos-1 and temp is not in last node repeat Step 4
+    // Step 4: Increment counter and move temp to next node
+    // Step 5: If counter = pos-1 do step 8 to 12
+    // Step 6: Let temp1  be next node of temp (i.e.) node to be deleted
+    // Step 7: If temp1 is NULL communicate failure and return -1
+    // Step 8: Make next part of temp = next part of temp1
+    // Step 9: Make prev part next node of temp1 as previous part of temp
 }
 void PrintList(dllist l)
 {
