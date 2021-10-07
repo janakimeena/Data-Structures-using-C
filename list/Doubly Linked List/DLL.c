@@ -154,11 +154,24 @@ int DeleteBeg(dllist* l)
 }
 int DeleteEnd(dllist *l)
 {
+    node *temp;
+    int d;
+    DELETE_ERROR_FLAG = 0;
     // Step 1: If list is empty or there is only one in the list return after calling Delete Beginning
+    if(IsEmpty(*l)||(IsSingleNode(*l)))
+    {
+        return DeleteBeg(l);
+    }
+    temp = l->tail;
     // Step 2: Make temp to point to tail
     // Step 3: Move tail to previous node
+    l->tail = l->tail->prev;
+    l->tail->next = NULL;
+    d = temp->data;
     // Step 4: Free memory pointed by tail
+    free(temp);
     // Step 5: Return data
+    return d;
 }
 int DeletePos(dllist *l,int pos)
 {

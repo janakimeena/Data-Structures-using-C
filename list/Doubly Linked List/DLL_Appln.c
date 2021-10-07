@@ -14,15 +14,20 @@ int main()
     CreateList(&l);
     printf("%d returned by isempty\n",IsEmpty(l));
     InsertEnd(&l,1);
-    InsertEnd(&l,2);
-    InsertEnd(&l,3);
+    //InsertEnd(&l,2);
+    //InsertEnd(&l,3);
     printf("List before deletion is \n");
     PrintList(l);
-    t = DeleteBeg(&l);
+    t = DeleteEnd(&l);
+    if(DELETE_ERROR_FLAG)
+        printf("Deletion failed\n");
+    else
+        printf("Element deleted is %d\n",t);
+    t = DeleteEnd(&l);
     if(DELETE_ERROR_FLAG)
         printf("Deletion failed");
     else
-        printf("Element deleted is %d",t);
+        printf("Element deleted is %d\n",t);
     printf("List after deletion is \n");
     PrintList(l);
 }
