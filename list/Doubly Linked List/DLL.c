@@ -1,6 +1,7 @@
 #include "DLL.h"
 #include<stdio.h>
 int DELETE_ERROR_FLAG = 0;
+int RETRIEVE_ERROR_FLAG = 0;
 node* CreateNode(int data)
 {
    node* new_node;
@@ -175,15 +176,111 @@ int DeleteEnd(dllist *l)
 }
 int DeletePos(dllist *l,int pos)
 {
+    node* temp,*temp1;
+    int counter,d;
+    DELETE_ERROR_FLAG=0;
     // Step 1: If list is empty or pos =1 then Call DeleteBeg and return
+    if(IsEmpty(*l)||(pos==1))
+    {
+        return DeleteBeg(l);
+    }
     // Step 2: Let temp = head, counter =1
+    temp = l->head; counter = 1;
+    while(counter<pos-1)
+    {
     // Step 3: While counter < pos-1 and temp is not in last node repeat Step 4
+    if(temp==l->tail)
+        break;
+    temp=temp->next;
+    counter++;
     // Step 4: Increment counter and move temp to next node
+    }
     // Step 5: If counter = pos-1 do step 8 to 12
+    if(counter==pos-1)
+    {
     // Step 6: Let temp1  be next node of temp (i.e.) node to be deleted
+    temp1=temp->next;
     // Step 7: If temp1 is NULL communicate failure and return -1
+    if(!temp1)
+    {
+        DELETE_ERROR_FLAG = 1;
+        return -1;
+    }
+    // If node to be delted is last node, call DeleteEnd
+    if(temp1==l->tail)
+        return DeleteEnd(l);
     // Step 8: Make next part of temp = next part of temp1
+    temp->next = temp1->next;
+
     // Step 9: Make prev part next node of temp1 as previous part of temp
+    temp1->next->prev = temp->prev;
+    d = temp1->data;
+    free(temp1);
+    return d;
+    }
+    DELETE_ERROR_FLAG = 1;
+    return -1;
+}
+int Locate(dllist l, int ele)
+{
+    node* temp;
+    int pos;
+    if(IsEmpty(l))
+    {
+    // Step 1: If list is empty then communicate failure and return -1
+    return -1;
+    }
+    temp = l.head;
+    pos=1;
+    // Step 2: Declare a temporary pointer, temp and integer counter
+    // Step 3: Initialize temp to point to first node and counter to 1
+    while(temp!=NULL)
+    {
+    // Step 4: While temp not equal to null repeat Step 5 and Step 6
+    // Step 5: If data part of node pointed by temp is equal to Element return counter 
+    if(temp->data==ele)
+        return pos;
+    // Step 6: Move temp to next node and increment counter
+    temp = temp->next;
+    pos++;
+    }
+    return -1;
+    // Step 8: return -1
+
+}
+int Retrieve(dllist l, int pos)
+{
+    node* temp;
+    int counter;
+    RETRIEVE_ERROR_FLAG = 0;
+    // Step 1: If list is empty then communicate failure and return -1
+    if(IsEmpty(l))
+    {
+        RETRIEVE_ERROR_FLAG = 1;
+        return -1;
+    }
+    // Step 2: Declare a temporary pointer, temp and integer counter
+    
+    // Step 3: Initialize temp to point to first node and counter to 1
+    temp = l.head;counter=1;
+    // Step 4: While counter<position repeat Step 5 and Step 6
+    while(counter<pos)
+    {
+    // Step 5: If temp is tail then break
+    if(temp==l.tail)
+    {
+        break;
+    }
+    temp=temp->next;
+    counter++;
+    }
+    // Step 6: Move temp to next node and increment counter
+    // Step 7: If pos == counter then return data part of temp and communicate failure otherwise
+    if(pos==counter)
+        return temp->data;
+    RETRIEVE_ERROR_FLAG = 1;
+    return -1;
+
 }
 void PrintList(dllist l)
 {

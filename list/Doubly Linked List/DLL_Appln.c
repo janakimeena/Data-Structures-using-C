@@ -14,22 +14,23 @@ int main()
     CreateList(&l);
     printf("%d returned by isempty\n",IsEmpty(l));
     InsertEnd(&l,1);
-    //InsertEnd(&l,2);
-    //InsertEnd(&l,3);
+    InsertEnd(&l,2);
+    InsertEnd(&l,37);
     printf("List before deletion is \n");
     PrintList(l);
-    t = DeleteEnd(&l);
-    if(DELETE_ERROR_FLAG)
-        printf("Deletion failed\n");
+    t = Retrieve(l,4);
+    if(RETRIEVE_ERROR_FLAG)
+        printf("Error\n");
     else
-        printf("Element deleted is %d\n",t);
-    t = DeleteEnd(&l);
+        printf("Element at position is %d\n",t);
+    PrintList(l);
+    /*t = DeleteEnd(&l);
     if(DELETE_ERROR_FLAG)
         printf("Deletion failed");
     else
         printf("Element deleted is %d\n",t);
     printf("List after deletion is \n");
-    PrintList(l);
+    PrintList(l);*/
 }
     
     

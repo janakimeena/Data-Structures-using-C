@@ -3,12 +3,12 @@
 * M Janaki Meena
 * 28-09-2021
 */
-
 #include<stdio.h>
 #include<stdlib.h>
 #ifndef DLL
 #define DLL
 extern int DELETE_ERROR_FLAG;
+extern int RETRIEVE_ERROR_FLAG;
 typedef struct node
 {
     struct node* prev;
@@ -31,6 +31,8 @@ int InsertPos(dllist* l,int pos,int data);
 int DeleteBeg(dllist* l);
 int DeleteEnd(dllist *l);
 int DeletePos(dllist *l,int pos);
+int Locate(dllist l, int ele);
+int Retrieve(dllist l, int pos);
 #endif
 
 
